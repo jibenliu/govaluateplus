@@ -224,10 +224,10 @@ var separatorSymbols = map[string]OperatorSymbol{
 	Returns true if this operator is contained by the given array of candidate symbols.
 	False otherwise.
 */
-func (this OperatorSymbol) IsModifierType(candidate []OperatorSymbol) bool {
+func (os OperatorSymbol) IsModifierType(candidate []OperatorSymbol) bool {
 
 	for _, symbolType := range candidate {
-		if this == symbolType {
+		if os == symbolType {
 			return true
 		}
 	}
@@ -241,9 +241,9 @@ func (this OperatorSymbol) IsModifierType(candidate []OperatorSymbol) bool {
 	OperatorSymbol to string, but that would require more memory, and another field somewhere.
 	Adding operators is rare enough that we just stringify it here instead.
 */
-func (this OperatorSymbol) String() string {
+func (os OperatorSymbol) String() string {
 
-	switch this {
+	switch os {
 	case NOOP:
 		return "NOOP"
 	case VALUE:

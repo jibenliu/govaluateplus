@@ -16,21 +16,21 @@ func newTokenStream(tokens []ExpressionToken) *tokenStream {
 	return ret
 }
 
-func (this *tokenStream) rewind() {
-	this.index -= 1
+func (ts *tokenStream) rewind() {
+	ts.index -= 1
 }
 
-func (this *tokenStream) next() ExpressionToken {
+func (ts *tokenStream) next() ExpressionToken {
 
 	var token ExpressionToken
 
-	token = this.tokens[this.index]
+	token = ts.tokens[ts.index]
 
-	this.index += 1
+	ts.index += 1
 	return token
 }
 
-func (this tokenStream) hasNext() bool {
+func (ts tokenStream) hasNext() bool {
 
-	return this.index < this.tokenLength
+	return ts.index < ts.tokenLength
 }

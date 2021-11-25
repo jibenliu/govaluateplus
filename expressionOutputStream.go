@@ -13,34 +13,34 @@ type expressionOutputStream struct {
 	transactions []string
 }
 
-func (this *expressionOutputStream) add(transaction string) {
-	this.transactions = append(this.transactions, transaction)
+func (eos *expressionOutputStream) add(transaction string) {
+	eos.transactions = append(eos.transactions, transaction)
 }
 
-func (this *expressionOutputStream) rollback() string {
+func (eos *expressionOutputStream) rollback() string {
 
-	index := len(this.transactions) - 1
-	ret := this.transactions[index]
+	index := len(eos.transactions) - 1
+	ret := eos.transactions[index]
 
-	this.transactions = this.transactions[:index]
+	eos.transactions = eos.transactions[:index]
 	return ret
 }
 
-func (this *expressionOutputStream) createString(delimiter string) string {
+func (eos *expressionOutputStream) createString(delimiter string) string {
 
 	var retBuffer bytes.Buffer
 	var transaction string
 
-	penultimate := len(this.transactions) - 1
+	penultimate := len(eos.transactions) - 1
 
 	for i := 0; i < penultimate; i++ {
 
-		transaction = this.transactions[i]
+		transaction = eos.transactions[i]
 
 		retBuffer.WriteString(transaction)
 		retBuffer.WriteString(delimiter)
 	}
-	retBuffer.WriteString(this.transactions[penultimate])
+	retBuffer.WriteString(eos.transactions[penultimate])
 
 	return retBuffer.String()
 }

@@ -47,26 +47,26 @@ var (
 	_false = interface{}(false)
 )
 
-func (this *evaluationStage) swapWith(other *evaluationStage) {
+func (es *evaluationStage) swapWith(other *evaluationStage) {
 
 	temp := *other
-	other.setToNonStage(*this)
-	this.setToNonStage(temp)
+	other.setToNonStage(*es)
+	es.setToNonStage(temp)
 }
 
-func (this *evaluationStage) setToNonStage(other evaluationStage) {
+func (es *evaluationStage) setToNonStage(other evaluationStage) {
 
-	this.symbol = other.symbol
-	this.operator = other.operator
-	this.leftTypeCheck = other.leftTypeCheck
-	this.rightTypeCheck = other.rightTypeCheck
-	this.typeCheck = other.typeCheck
-	this.typeErrorFormat = other.typeErrorFormat
+	es.symbol = other.symbol
+	es.operator = other.operator
+	es.leftTypeCheck = other.leftTypeCheck
+	es.rightTypeCheck = other.rightTypeCheck
+	es.typeCheck = other.typeCheck
+	es.typeErrorFormat = other.typeErrorFormat
 }
 
-func (this *evaluationStage) isShortCircuitable() bool {
+func (es *evaluationStage) isShortCircuitable() bool {
 
-	switch this.symbol {
+	switch es.symbol {
 	case AND:
 		fallthrough
 	case OR:
