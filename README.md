@@ -1,4 +1,4 @@
-govaluateplusplus
+govaluateplus
 ====
 
 [![Build Status](https://travis-ci.org/Knetic/govaluateplus.svg?branch=master)](https://github.com/yigenshutiao/govaluateplus/)
