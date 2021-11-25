@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 type lexerStream struct {
 	source   []rune

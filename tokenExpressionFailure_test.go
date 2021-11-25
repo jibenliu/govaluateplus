@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 import (
 	"fmt"

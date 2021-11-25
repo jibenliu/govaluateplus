@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 /*
   Tests to make sure evaluation fails in the expected ways.

@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 type tokenStream struct {
 	tokens      []ExpressionToken

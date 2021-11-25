@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 /*
 	Represents a function that can be called from within an expression.

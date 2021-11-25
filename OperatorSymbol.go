@@ -1,4 +1,4 @@
-package govaluate
+package govaluateplus
 
 /*
 	Represents the valid symbols for operators.
