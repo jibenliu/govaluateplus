@@ -139,7 +139,7 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 		}
 
 		// regular variable - or function?
-		if unicode.IsLetter(character) {
+		if unicode.IsLetter(character) || character == '_' {
 
 			tokenString = readTokenUntilFalse(stream, isVariableName)
 
