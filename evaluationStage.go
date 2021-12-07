@@ -88,12 +88,15 @@ func noopStageRight(left interface{}, right interface{}, parameters Parameters) 
 
 func addStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 
-	// string concat if either are strings
-	if isString(left) || isString(right) {
-		return fmt.Sprintf("%v%v", left, right), nil
+	leftNode, leftRrr := ToFloat64(left)
+	rightNode, rightRrr := ToFloat64(right)
+
+	// 两边都可以转换成float64
+	if leftRrr == nil && rightRrr == nil {
+		return leftNode + rightNode, nil
 	}
 
-	return left.(float64) + right.(float64), nil
+	return fmt.Sprintf("%v%v", left, right), nil
 }
 func subtractStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	return left.(float64) - right.(float64), nil
