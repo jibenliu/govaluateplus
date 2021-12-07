@@ -8,6 +8,19 @@ govaluateplus
 
 Provides support for evaluating arbitrary C-like artithmetic/string expressions.
 
+What's the difference between govalueplus and govaluate?
+--
+
+
+
+|           | govaluateplus      | govaluate      |
+| --------- | ------------------ | -------------- |
+| type      | weak type          | strong type    |
+| precision | Precision accurate | Precision loss |
+
+
+
+
 Why can't you just write these expressions in code?
 --
 
