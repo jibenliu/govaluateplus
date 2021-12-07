@@ -1,5 +1,7 @@
 package govaluateplus
 
+// 代码是从 https://github.com/spf13/cast 抄的
+
 import (
 	"fmt"
 	"reflect"

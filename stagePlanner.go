@@ -515,8 +515,8 @@ func findTypeChecks(symbol OperatorSymbol) typeChecks {
 		fallthrough
 	case EXPONENT:
 		return typeChecks{
-			left:  isFloat64,
-			right: isFloat64,
+			left:  isNumOrStr,
+			right: isNumOrStr,
 		}
 	case NEGATE:
 		return typeChecks{

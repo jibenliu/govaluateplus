@@ -99,19 +99,60 @@ func addStage(left interface{}, right interface{}, parameters Parameters) (inter
 	return fmt.Sprintf("%v%v", left, right), nil
 }
 func subtractStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) - right.(float64), nil
+	leftNode, err := ToFloat64(left)
+	if err != nil {
+		return nil, err
+	}
+	rightNode, err := ToFloat64(right)
+	if err != nil {
+		return nil, err
+	}
+	return leftNode - rightNode, nil
 }
 func multiplyStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) * right.(float64), nil
+	leftNode, err := ToFloat64(left)
+	if err != nil {
+		return nil, err
+	}
+	rightNode, err := ToFloat64(right)
+	if err != nil {
+		return nil, err
+	}
+	return leftNode * rightNode, nil
 }
 func divideStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return left.(float64) / right.(float64), nil
+	leftNode, err := ToFloat64(left)
+	if err != nil {
+		return nil, err
+	}
+	rightNode, err := ToFloat64(right)
+	if err != nil {
+		return nil, err
+	}
+	return leftNode / rightNode, nil
 }
 func exponentStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return math.Pow(left.(float64), right.(float64)), nil
+	leftNode, err := ToFloat64(left)
+	if err != nil {
+		return nil, err
+	}
+	rightNode, err := ToFloat64(right)
+	if err != nil {
+		return nil, err
+	}
+
+	return math.Pow(leftNode, rightNode), nil
 }
 func modulusStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
-	return math.Mod(left.(float64), right.(float64)), nil
+	leftNode, err := ToFloat64(left)
+	if err != nil {
+		return nil, err
+	}
+	rightNode, err := ToFloat64(right)
+	if err != nil {
+		return nil, err
+	}
+	return math.Mod(leftNode, rightNode), nil
 }
 func gteStage(left interface{}, right interface{}, parameters Parameters) (interface{}, error) {
 	if isString(left) && isString(right) {
@@ -458,6 +499,22 @@ func isBool(value interface{}) bool {
 	case bool:
 		return true
 	}
+	return false
+}
+
+// isNumOrStr 目前interface里面是数字类型默认是float64, 其实这些判决里面很多case没啥用
+func isNumOrStr(value interface{}) bool {
+	switch value.(type) {
+	case float64, float32:
+		return true
+	case int, int8, int16, int32, int64:
+		return true
+	case uint, uint8, uint16, uint32, uint64:
+		return true
+	case string:
+		return true
+	}
+
 	return false
 }
 
