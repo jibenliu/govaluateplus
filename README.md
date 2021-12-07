@@ -19,6 +19,19 @@ What's the difference between govalueplus and govaluate?
 | precision | Precision accurate | Precision loss |
 
 
+type promotion 
+--
+### promotion rule 
+
+| original      | promotion      |
+| ------------------ | -------------- |
+| string          |float64    |
+| int | float64 |
+
+### operation
+
+add、 subtract 、multiply 、divide 、exponent 、modulus
+
 
 
 Why can't you just write these expressions in code?
