@@ -15,7 +15,7 @@ What's the difference between govalueplus and govaluate?
 
 |           | govaluateplus      | govaluate      |
 | --------- | ------------------ | -------------- |
-| type      | weak type          | strong type    |
+| type      | weak type(type promotion)          | strong type    |
 | precision | Precision accurate | Precision loss |
 
 
