@@ -28,6 +28,59 @@ func TestNoParameterEvaluation(test *testing.T) {
 
 	evaluationTests := []EvaluationTest{
 
+		// ------ go valuate plus new case end ------
+
+		EvaluationTest{
+
+			Name:     "go valuate plus string string PLUS",
+			Input:    "'51' + '49'",
+			Expected: 100.0,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string int PLUS",
+			Input:    "'51' + 49",
+			Expected: 100.0,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string string MINUS",
+			Input:    "'51' - '49'",
+			Expected: 2.0,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string int MINUS",
+			Input:    "'51' - 49",
+			Expected: 2.0,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string string MULTIPLY",
+			Input:    "'2' * '5'",
+			Expected: 10.0,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string int MULTIPLY",
+			Input:    "2 * 5",
+			Expected: 10.0,
+		},
+
+		EvaluationTest{
+
+			Name:     "go valuate plus string string DIVIDE",
+			Input:    "'2' / '5'",
+			Expected: 0.4,
+		},
+		EvaluationTest{
+
+			Name:     "go valuate plus string int DIVIDE",
+			Input:    "2 / '5'",
+			Expected: 0.4,
+		},
+		// ------ go valuate plus new case end ------
+
 		EvaluationTest{
 
 			Name:     "Single PLUS",
