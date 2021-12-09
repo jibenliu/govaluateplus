@@ -203,7 +203,7 @@ func readToken(stream *lexerStream, state lexerState, functions map[string]Expre
 			break
 		}
 
-		if !isNotQuote(character) {
+		if isQuote(character) {
 			tokenValue, completed = readUntilFalse(stream, true, false, true, isNotQuote)
 
 			if !completed {
@@ -315,7 +315,6 @@ func readUntilFalse(stream *lexerStream, includeWhitespace bool, breakWhitespace
 
 		// Use backslashes to escape anything
 		if allowEscaping && character == '\\' {
-
 			character = stream.readCharacter()
 			tokenBuffer.WriteString(string(character))
 			continue
@@ -439,6 +438,10 @@ func isNumeric(character rune) bool {
 func isNotQuote(character rune) bool {
 
 	return character != '\'' && character != '"'
+}
+
+func isQuote(character rune) bool {
+	return character == '\'' || character == '"'
 }
 
 func isNotAlphanumeric(character rune) bool {
