@@ -3,6 +3,7 @@ package govaluateplus
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 const isoDateFormat string = "2006-01-02T15:04:05.999999999Z0700"
@@ -133,8 +134,28 @@ func (ee EvaluableExpression) Evaluate(parameters map[string]interface{}) (inter
 	if parameters == nil {
 		return ee.Eval(nil)
 	}
+	param := escapeBackslash(parameters)
+	return ee.Eval(MapParameters(param))
+}
 
-	return ee.Eval(MapParameters(parameters))
+// escapeBackslash 如果param中带有'\',在遍历ast求值阶段干掉'\'，这么做是为了兼容生成token阶段，每个token都会去掉'\'的做法
+func escapeBackslash(param map[string]interface{}) map[string]interface{} {
+	res := make(map[string]interface{}, len(param))
+
+	for k, v := range param {
+		switch v.(type) {
+		case string:
+			res[k] = removeBackSlash(v.(string))
+		default:
+			res[k] = v
+		}
+	}
+
+	return res
+}
+
+func removeBackSlash(source string) string {
+	return strings.ReplaceAll(source, "\\", "")
 }
 
 /*

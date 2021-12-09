@@ -782,6 +782,23 @@ func TestParameterizedEvaluation(test *testing.T) {
 
 	evaluationTests := []EvaluationTest{
 
+		// ----------- go valuate plus case start -----------
+
+		EvaluationTest{
+
+			Name:  "Single parameter modified by constant",
+			Input: "foo  == '' ? '[]' : foo",
+			Parameters: []EvaluationParameter{
+
+				EvaluationParameter{
+					Name:  "foo",
+					Value: `[\"hello\", \"world\"]`,
+				},
+			},
+			Expected: `["hello", "world"]`,
+		},
+
+		// ----------- go valuate plus case end -----------
 		EvaluationTest{
 
 			Name:  "Single parameter modified by constant",
