@@ -34,7 +34,7 @@ type EvaluableExpression struct {
 	ChecksTypes bool
 
 	tokens           []ExpressionToken
-	evaluationStages *evaluationStage
+	evaluationStages *EvaluationStage
 	inputExpression  string
 }
 
@@ -184,7 +184,7 @@ func (ee EvaluableExpression) Eval(parameters Parameters) (interface{}, error) {
 	return ee.evaluateStage(ee.evaluationStages, parameters)
 }
 
-func (ee EvaluableExpression) evaluateStage(stage *evaluationStage, parameters Parameters) (interface{}, error) {
+func (ee EvaluableExpression) evaluateStage(stage *EvaluationStage, parameters Parameters) (interface{}, error) {
 
 	var left, right interface{}
 	var err error

@@ -21,10 +21,10 @@ type evaluationOperator func(left interface{}, right interface{}, parameters Par
 type stageTypeCheck func(value interface{}) bool
 type stageCombinedTypeCheck func(left interface{}, right interface{}) bool
 
-type evaluationStage struct {
+type EvaluationStage struct {
 	symbol OperatorSymbol
 
-	leftStage, rightStage *evaluationStage
+	leftStage, rightStage *EvaluationStage
 
 	// the operation that will be used to evaluate this stage (such as adding [left] to [right] and return the result)
 	operator evaluationOperator
@@ -47,14 +47,14 @@ var (
 	_false = interface{}(false)
 )
 
-func (es *evaluationStage) swapWith(other *evaluationStage) {
+func (es *EvaluationStage) swapWith(other *EvaluationStage) {
 
 	temp := *other
 	other.setToNonStage(*es)
 	es.setToNonStage(temp)
 }
 
-func (es *evaluationStage) setToNonStage(other evaluationStage) {
+func (es *EvaluationStage) setToNonStage(other EvaluationStage) {
 
 	es.symbol = other.symbol
 	es.operator = other.operator
@@ -64,7 +64,7 @@ func (es *evaluationStage) setToNonStage(other evaluationStage) {
 	es.typeErrorFormat = other.typeErrorFormat
 }
 
-func (es *evaluationStage) isShortCircuitable() bool {
+func (es *EvaluationStage) isShortCircuitable() bool {
 
 	switch es.symbol {
 	case AND:
