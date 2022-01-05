@@ -622,7 +622,9 @@ func mirrorStageSubtree(stages []*EvaluationStage) {
 
 		frontStage = stages[i+1]
 		inverseStage = stages[stagesLength-i-1]
-		frontStage.rightStage, inverseStage.rightStage = inverseStage.rightStage, frontStage.rightStage
+		if frontStage != inverseStage {
+			frontStage.rightStage, inverseStage.rightStage = inverseStage.rightStage, frontStage.rightStage
+		}
 	}
 
 	// swap all other information with inverse stages
