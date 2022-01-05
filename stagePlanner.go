@@ -559,14 +559,14 @@ func reorderStages(rootStage *EvaluationStage) {
 	var identicalPrecedences []*EvaluationStage
 	var currentStage, nextStage *EvaluationStage
 	var precedence, currentPrecedence operatorPrecedence
-
+	// 把root赋值给next，
 	nextStage = rootStage
-	precedence = findOperatorPrecedenceForSymbol(rootStage.symbol)
+	precedence = findOperatorPrecedenceForSymbol(rootStage.symbol) // 找到root的优先级
 
 	for nextStage != nil {
-
+		// 再把next赋值给current， 这里为啥不是current = root，主要是为了后续循环方便
 		currentStage = nextStage
-		nextStage = currentStage.rightStage
+		nextStage = currentStage.rightStage // next = right
 
 		// left depth first, since this entire method only looks for precedences down the right side of the tree
 		if currentStage.leftStage != nil {
@@ -602,35 +602,27 @@ func reorderStages(rootStage *EvaluationStage) {
 */
 func mirrorStageSubtree(stages []*EvaluationStage) {
 
-	var rootStage, inverseStage, carryStage, frontStage *EvaluationStage
+	var rootStage, inverseStage, frontStage *EvaluationStage
 
 	stagesLength := len(stages)
 
 	// reverse all right/left
 	for _, frontStage = range stages {
-
-		carryStage = frontStage.rightStage
-		frontStage.rightStage = frontStage.leftStage
-		frontStage.leftStage = carryStage
+		frontStage.rightStage, frontStage.leftStage = frontStage.leftStage, frontStage.rightStage
 	}
 
 	// end left swaps with root right
 	rootStage = stages[0]
 	frontStage = stages[stagesLength-1]
 
-	carryStage = frontStage.leftStage
-	frontStage.leftStage = rootStage.rightStage
-	rootStage.rightStage = carryStage
+	frontStage.leftStage, rootStage.rightStage = rootStage.rightStage, frontStage.leftStage
 
 	// for all non-root non-end stages, right is swapped with inverse stage right in list
 	for i := 0; i < (stagesLength-2)/2+1; i++ {
 
 		frontStage = stages[i+1]
 		inverseStage = stages[stagesLength-i-1]
-
-		carryStage = frontStage.rightStage
-		frontStage.rightStage = inverseStage.rightStage
-		inverseStage.rightStage = carryStage
+		frontStage.rightStage, inverseStage.rightStage = inverseStage.rightStage, frontStage.rightStage
 	}
 
 	// swap all other information with inverse stages
